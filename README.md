@@ -5,9 +5,10 @@ This is a simple registration app built for Android. It consists of two screens:
 
 ## Visuals
 
-Disclaimer: please use the 1080p version in order to avoid YouTube compression.
-Screen recording for basic usage of app: https://drive.google.com/file/d/1QbOdBKbtqVunc_0tOzrtObhhwoysmy-H/view?usp=sharing 
-Screen recording of failure - Toast message: https://drive.google.com/file/d/1dbRwxjuUP9dWwU1F-PQ9c3wE74LTcBlR/view?usp=sharing
+_Disclaimer: please use the 1080p version in order to avoid YouTube compression._
+
+- Screen recording for basic usage of app: https://drive.google.com/file/d/1QbOdBKbtqVunc_0tOzrtObhhwoysmy-H/view?usp=sharing
+- Screen recording of failure - Toast message: https://drive.google.com/file/d/1dbRwxjuUP9dWwU1F-PQ9c3wE74LTcBlR/view?usp=sharing
 
 ## Features
 

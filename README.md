@@ -18,7 +18,3 @@ To use this project:
 
 - **Confirmation Screen**: Upon successful registration, the user is taken to this screen, which displays a static "Thank you for registering" message, along with the user's entered information.
 
-## License
-
-This project is open-source under the MIT license. See the LICENSE file for more information.
-

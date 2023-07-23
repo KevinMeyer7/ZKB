@@ -60,6 +60,10 @@ public class RegistrationActivityTest {
         // Perform registration
         onView(withId(R.id.register)).perform(click());
         // Assuming you go to ConfirmationActivity and there's a TextView with id "confirmation_message"
-        onView(withId(R.id.confirmation_message)).check(matches(withText("Thank you for registering, Test User!")));
+        onView(withId(R.id.confirmation_message)).check(matches(withText("Danke für die Registrierung")));
+        onView(withId(R.id.user_name)).check(matches(withText("Test User")));
+        onView(withId(R.id.user_email)).check(matches(withText("testuser@example.com")));
+        onView(withId(R.id.user_birth_date)).check(matches(withText("01/01/1990")));
+
     }
 }

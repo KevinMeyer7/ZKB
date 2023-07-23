@@ -8,6 +8,8 @@ import com.example.loginapp.models.User;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class RegistrationViewModel extends ViewModel {
     private MutableLiveData<User> user;
@@ -31,13 +33,24 @@ public class RegistrationViewModel extends ViewModel {
     }
 
     private boolean isValidEmail(String email) {
-        // Hier wird die E-Mail-Validierungsmethode implementiert
-        // Sie können hier eine umfassendere Methode einfügen
-        return email != null && android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
+        /* Built-in, correct version that includes all cases:
+        return email != null && android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches(); */
+
+        // Manual regex. Breakdown: one or more chars + @ +
+        // one or more chars + . + 2 or more chars until eol.
+        if (email == null) {
+            return false;
+        }
+
+        String regex = "^[\\w\\.-]+@[\\w\\.-]+\\.[\\w\\.-]{2,}$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(email);
+
+        return matcher.find();
     }
 
     private boolean isValidBirthDate(Date birthDate) {
-        // Überprüfen Sie, ob das Geburtsdatum zwischen dem 1. Januar 1900 und dem 31. Dezember 2021 liegt
+        // Birth date has to be between Jan 1st 1900 and Dec 31st 2021.
         Calendar start = Calendar.getInstance();
         start.set(1900, Calendar.JANUARY, 1);
         Calendar end = Calendar.getInstance();

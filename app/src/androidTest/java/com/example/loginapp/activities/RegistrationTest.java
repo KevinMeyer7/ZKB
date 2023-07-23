@@ -41,7 +41,7 @@ import android.widget.DatePicker;
 
 // E2E test with correct invocation of the ConfirmationActivity.
 @RunWith(AndroidJUnit4.class)
-public class RegistrationActivityTest {
+public class RegistrationTest {
     @Rule
     public ActivityScenarioRule<RegistrationActivity> activityRule = new ActivityScenarioRule<>(RegistrationActivity.class);
 

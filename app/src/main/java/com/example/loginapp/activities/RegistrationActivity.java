@@ -30,6 +30,7 @@ public class RegistrationActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
+        setTitle("Registrierung");
 
         EditText name = findViewById(R.id.name);
         EditText email = findViewById(R.id.email);
@@ -56,9 +57,7 @@ public class RegistrationActivity extends AppCompatActivity {
         viewModel.getUser().observe(this, user -> {
             if (user != null) {
                 saveUserData(user);
-                Intent intent = new Intent(RegistrationActivity.this, ConfirmationActivity.class);
-                intent.putExtra("user", user);
-                startActivity(intent);
+                navigateToConfirmationActivity(user);
             }
         });
     }
@@ -70,10 +69,16 @@ public class RegistrationActivity extends AppCompatActivity {
         editor.putString("email", user.getEmail());
 
         // Save date as day.month.year.
-        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy", Locale.GERMAN);
-        String birthDateString = sdf.format(user.getBirthDate());
+        SimpleDateFormat dateFormatter = new SimpleDateFormat("dd-MM-yyyy", Locale.GERMAN);
+        String birthDateString = dateFormatter.format(user.getBirthDate());
 
         editor.putString("birthDate", birthDateString);  // We only store primitive data types, so we convert date to long
         editor.apply();
+    }
+
+    private void navigateToConfirmationActivity(User user) {
+        Intent intent = new Intent(this, ConfirmationActivity.class);
+        intent.putExtra("user", user);
+        startActivity(intent);
     }
 }

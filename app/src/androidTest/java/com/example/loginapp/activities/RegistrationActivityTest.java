@@ -1,5 +1,8 @@
 package com.example.loginapp.activities;
 
+import static android.content.Context.MODE_PRIVATE;
+
+import androidx.test.core.app.ApplicationProvider;
 import androidx.test.espresso.matcher.RootMatchers;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
@@ -10,6 +13,7 @@ import com.example.loginapp.activities.RegistrationActivity;
 import androidx.test.espresso.contrib.PickerActions;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
+import org.junit.Assert;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -31,6 +35,8 @@ import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.widget.DatePicker;
 
 // E2E test with correct invocation of the ConfirmationActivity.
@@ -64,5 +70,16 @@ public class RegistrationActivityTest {
         onView(withId(R.id.user_name)).check(matches(withText("Test User")));
         onView(withId(R.id.user_email)).check(matches(withText("testuser@example.com")));
         onView(withId(R.id.user_birth_date)).check(matches(withText("01/01/1990")));
+
+        // Additional SharedPreferences check
+        Context appContext = ApplicationProvider.getApplicationContext();
+        SharedPreferences prefs = appContext.getSharedPreferences("UserDetails", MODE_PRIVATE);
+        String name = prefs.getString("name", "");
+        String email = prefs.getString("email", "");
+        String birthDateString = prefs.getString("birthDate", "");
+
+        Assert.assertEquals("Test User", name);
+        Assert.assertEquals("testuser@example.com", email);
+        Assert.assertEquals("01-01-1990", birthDateString);
     }
 }

@@ -28,11 +28,11 @@ public class RegistrationViewModel extends ViewModel {
         }
     }
 
-    private boolean isValidName(String name) {
+    public boolean isValidName(String name) {
         return name != null && !name.isEmpty();
     }
 
-    private boolean isValidEmail(String email) {
+    public boolean isValidEmail(String email) {
         /* Built-in, correct version that includes all cases:
         return email != null && android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches(); */
 
@@ -49,7 +49,7 @@ public class RegistrationViewModel extends ViewModel {
         return matcher.find();
     }
 
-    private boolean isValidBirthDate(Date birthDate) {
+    public boolean isValidBirthDate(Date birthDate) {
         // Birth date has to be between Jan 1st 1900 and Dec 31st 2021.
         Calendar start = Calendar.getInstance();
         start.set(1900, Calendar.JANUARY, 1);

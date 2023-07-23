@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -39,6 +40,11 @@ public class RegistrationActivity extends AppCompatActivity {
             Calendar calendar = Calendar.getInstance();
             calendar.set(birthDate.getYear(), birthDate.getMonth(), birthDate.getDayOfMonth());
             Date birthDateDate = calendar.getTime();
+
+            if (!viewModel.isValidName(nameStr) || !viewModel.isValidEmail(emailStr) || !viewModel.isValidBirthDate(birthDateDate)) {
+                Toast.makeText(RegistrationActivity.this, "Validation failed. Please check your inputs.", Toast.LENGTH_SHORT).show();
+                return;
+            }
 
             viewModel.register(nameStr, emailStr, birthDateDate);
         });

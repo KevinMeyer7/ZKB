@@ -64,6 +64,5 @@ public class RegistrationActivityTest {
         onView(withId(R.id.user_name)).check(matches(withText("Test User")));
         onView(withId(R.id.user_email)).check(matches(withText("testuser@example.com")));
         onView(withId(R.id.user_birth_date)).check(matches(withText("01/01/1990")));
-
     }
 }
